@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+<div th:replace="fragments/layout.html :: menu"/>
+		<!--navigation bar-->
+<div align="center">
+		
+		<h1>Public Holiday Management</h1>
+		<a th:href="@{/newpublicholiday}">Add Public Holiday</a>
+		<table>
+		<thead>
+			<tr>
+				
+				<th>Name</th>
+				<th>Description</th>
+				<th>Date</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="publicholiday : ${listPublicHolidays}">
+				<td th:text="${publicholiday.name}">Name</td>
+				<td th:text="${publicholiday.description}">Description</td>
+				<td th:text="${publicholiday.date}">Date</td>
+				
+				<td>
+					<a th:href="@{'/editpublicholiday/'+${publicholiday.name}}">Edit</a>
+					<a th:href="@{'/deletepublicholiday/'+${publicholiday.name}}">Delete</a>
+				</td>
+			</tr>
+		</tbody>	
+		</table>
+</div>
+
+
+
+</body>
+
+	
+	
+
+
+</html>

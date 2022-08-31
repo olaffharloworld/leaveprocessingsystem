@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+<div th:replace="fragments/layout.html :: menu"/>
+		<!--navigation bar-->
+<div align="center">
+		
+		<h1>View subordinate history</h1>
+		<table>
+		<thead>
+			<tr>	
+				<th>name</th>		
+				<th>From Date</th>
+				<th>To Date</th>
+				<th>No of Days</th>
+				<th>leavetype</th>
+				<th>Reason</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="leave,iterStat : ${leaveList}">
+				<td th:text="${leave.employeeName}">name</td>
+				<td th:text="${leave.fromDate}">FROMdate</td>
+				<td th:text="${leave.toDate}">toDATE</td>
+				<td th:text="${leave.duration}">duration</td>
+				<td th:text="${leave.leaveType}">leavetype</td>
+				<td th:text="${leave.reason}">reason</td>
+				
+				<td>
+					<span th:if="${leave.acceptRejectFlag}">ACCEPTED</span>
+					<span th:if="${!leave.acceptRejectFlag}">REJECTED</span>
+				</td >
+	
+			</tr>
+		</tbody>	
+		</table>
+		
+</div>
+</body>
+</html>

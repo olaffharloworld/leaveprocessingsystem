@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+<div th:replace="fragments/layout.html :: menu"/>
+		<!--navigation bar-->
+<div align="center">
+		
+		<h1>Leave Entitlement Management</h1>
+		<a th:href="@{/newleavebalance}">Add Leave Balance</a>
+		<table>
+		<thead>
+			<tr>
+				
+				<th>User Name</th>
+				<th>Leave Type</th>
+				<th>Balance</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="leavebalance : ${listLeaveBalances}">
+				<td th:text="${leavebalance.name}">User Name</td>
+				<td th:text="${leavebalance.type}">type</td>
+				<td th:text="${leavebalance.balance}">Balance</td>
+				
+				<td>
+					<a th:href="@{'/editeleavebalance/'+${leavebalance.userleaveid}}">Edit</a>
+					<a th:href="@{'/deleteleavebalance/'+${leavebalance.userleaveid}}">Delete</a>
+				</td>
+			</tr>
+		</tbody>	
+		</table>
+</div>
+
+
+
+</body>
+
+	
+	
+
+
+</html>

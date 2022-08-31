@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+<div th:replace="fragments/layout.html :: menu"/>
+		<!--navigation bar-->
+	<div align="center">
+		<h1>Edit User</h1>
+		<br/>
+		<form action="#" th:action="@{/edit/}+${user.userId}" th:object="${user}" method="POST">
+			<table>
+				<tr>
+					<td>User Id: </td>
+					<td><input type="text" th:field="*{userId}"/></td>
+				</tr>
+				<tr>
+					<td>User name: </td>
+					<td><input type="text" th:field="*{name}"/></td>
+				</tr>
+				
+				<tr>
+					<td>email: </td>
+					<td><input type="text" th:field="*{email}"/></td>
+				</tr>
+				<tr>
+					<td>mobileNo: </td>
+					<td><input type="text" th:field="*{mobileNo}"/></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Update"/></td>
+				</tr>
+				<tr>
+					<td>
+						<label for="listRoles">User roles(multiple select):</label></td>
+					</td>
+					<td></td>
+					<td>
+						<select size="03" multiple="multiple"
+						name="roles" id="roles">	
+						<option th:each="role:${listRoles}" th:value="${role.roleId}"
+						th:text="${role.name}">Roles1</option>
+						</select>
+					</td>
+				
+				</tr>
+				
+				
+			</table>
+		</form>
+	</div>
+</body></html>
+
+

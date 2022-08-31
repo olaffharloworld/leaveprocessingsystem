@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+<div th:replace="fragments/layout.html :: menu"/>
+		<!--navigation bar-->
+<div align="center">
+		
+		<h1>Staff Management</h1>
+		<a th:href="@{/new}">Add Staff</a>
+		<table>
+		<thead>
+			<tr>
+				
+				<th>User ID</th>
+				<th>User Name</th>
+
+				<th>Email Address</th>
+				<th>Mobile No</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user : ${listUsers}">
+				<td th:text="${user.userId}">User ID</td>
+				<td th:text="${user.name}">Name</td>
+
+				<td th:text="${user.email}">Email</td>
+				<td th:text="${user.mobileNo}">Mobile NO</td>
+				
+				<td>
+					<a th:href="@{'/edit/'+${user.userId}}">Edit</a>
+					<a th:href="@{'/delete/'+${user.userId}}">Delete</a>
+				</td>
+			</tr>
+		</tbody>	
+		</table>
+</div>
+
+
+
+</body>
+
+	
+	
+
+
+</html>

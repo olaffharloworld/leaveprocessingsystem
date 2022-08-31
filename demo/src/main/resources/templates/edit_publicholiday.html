@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+<div th:replace="fragments/layout.html :: menu"/>
+		<!--navigation bar-->
+	<div align="center">
+		<h1>Edit Public Holiday</h1>
+		<br/>
+		<form action="#" th:action="@{/editpublicholiday/}+${publicholiday.name}" th:object="${publicholiday}" method="POST">
+			<table>
+				<tr>
+					<td>Name: </td>
+					<td>
+						<fieldset>
+							<input type="text" th:field="*{name}" />
+						</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+				</tr>
+				<tr>
+					<td>Description: </td>
+					<td>
+						<fieldset>
+							<input type="text" th:field="*{description}" />
+						</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></td>
+				</tr>
+
+				<tr>
+					<td>Date: </td>
+					<!--<td><input type="text" th:field="*{date}"></td>-->
+					<td>
+						<fieldset>
+							<input type="text" th:field="*{date}" placeholder="dd-MM-yyyy"/>
+						</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Update"/></td>
+				</tr>
+				
+				
+			</table>
+		</form>
+	</div>
+</body></html>
+
+

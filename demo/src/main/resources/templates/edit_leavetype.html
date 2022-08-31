@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+<div th:replace="fragments/layout.html :: menu"/>
+		<!--navigation bar-->
+	<div align="center">
+		<h1>Edit leavetype</h1>
+		<br/>
+		<form action="#" th:action="@{/editleavetype/}+${leavetype.typeId}" th:object="${leavetype}" method="POST">
+			<table>
+				<tr>
+					<td>type Id</td>
+					<td><input type="text" th:field="*{typeId}"/></td>
+					<td th:if="${#fields.hasErrors('typeId')}" th:errors="*{typeId}"></td>
+				</tr>
+				<tr>
+					<td>type: </td>
+					<!--<td><input type="text" th:field="*{type}"/></td>
+				</tr>-->
+				<td>
+					<fieldset>
+						<input type="text" th:field="*{type}" />
+					</fieldset>
+				</td>
+				<td th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></td>
+				</tr>
+				<tr>
+					<td>description: </td>
+					<td>
+						<fieldset>
+							<input type="text" th:field="*{description}" />
+						</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></td>
+					<!--<td><input type="text" th:field="*{description}"/></td>-->
+				</tr>
+				<tr>
+					<td><input type="submit" value="Update"/></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body></html>
+
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+<div th:replace="fragments/layout.html :: menu"/>
+		<!--navigation bar-->
+	<div align="center">
+		<h1>Add New Employee</h1>
+		<br/>
+		<form action="#" th:action="@{/saveemployee}" th:object="${employee}" method="POST">
+			<table>
+<!--				<tr>
+					<td>Employee Id: </td>
+					<td><input type="text" th:field="*{employeeId}"></td>
+				</tr>-->
+				<tr>
+					<td>Employee Id:</td>
+					<td>
+						<fieldset>
+							<select th:field="*{employeeId}">
+								<option th:each="user:${listUsers}" th:value="${user.userId}" th:text="${user.userId}">List</option>
+							</select>
+						</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('employeeId')}" th:errors="*{user.userId}"></td>
+				</tr>
+<!--				<tr>
+					<td>name: </td>
+					<td><input type="text" th:field="*{name}"></td>
+				</tr>-->
+				<tr>
+					<td>Name:</td>
+					<td>
+						<fieldset>
+							<select th:field="*{name}">
+								<option th:each="user:${listUsers}" th:value="${user.name}" th:text="${user.name}">List</option>
+							</select>
+						</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{user.name}"></td>
+				</tr>
+				<!--<tr>
+					<td>Manager Id </td>
+					<td><input type="text" th:field="*{managerId}"></td>
+				</tr>-->
+				<tr>
+					<td>Manager Id:</td>
+					<td>
+						<fieldset>
+							<select th:field="*{managerId}">
+								<option th:each="user:${listUsers}" th:value="${user.userId}" th:text="${user.userId}">List</option>
+							</select>
+						</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('employeeId')}" th:errors="*{user.userId}"></td>
+				</tr>
+				
+
+				<tr>
+					<td colspan="2"><button type="submit">Save</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body></html>
+
+

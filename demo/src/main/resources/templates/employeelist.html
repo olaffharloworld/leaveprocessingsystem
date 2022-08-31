@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+<div th:replace="fragments/layout.html :: menu"/>
+		<!--navigation bar-->
+<div align="center">
+		
+		<h1>Hierachy Management</h1>
+		<a th:href="@{/newemployee}">Add Employee</a>
+		<table>
+		<thead>
+			<tr>
+				
+				<th>Employee ID</th>
+				<th>Employee Name</th>
+				<th>Manager ID</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="employee : ${listEmployees}">
+				<td th:text="${employee.employeeId}">User ID</td>
+				<td th:text="${employee.name}">Name</td>
+				<td th:text="${employee.managerId !=null ? employee.managerId: 'No manager'}">managerID</td>
+				
+				<td>
+					<a th:href="@{'/editemployee/'+${employee.employeeId}}">Edit</a>
+				
+				</td>
+			</tr>
+		</tbody>	
+		</table>
+</div>
+
+
+
+</body>
+
+	
+	
+
+
+</html>

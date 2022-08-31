@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+<div th:replace="fragments/layout.html :: menu"/>
+		<!--navigation bar-->
+<div align="center">
+		
+		<h1>LeaveType Management</h1>
+		<a th:href="@{/newleavetype}">Add LeaveType</a>
+		<table>
+		<thead>
+			<tr>
+				
+				<th>typeId</th>
+				<th>type</th>
+				<th>description</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="leavetype : ${listLeaveTypes}">
+				<td th:text="${leavetype.typeId}">typeId</td>
+				<td th:text="${leavetype.type}">type</td>
+				<td th:text="${leavetype.description}">des</td>
+				
+				<td>
+					<a th:href="@{'/editleavetype/'+${leavetype.typeId}}">Edit</a>
+					<a th:href="@{'/deleteleavetype/'+${leavetype.typeId}}">Delete</a>
+				</td>
+			</tr>
+		</tbody>	
+		</table>
+</div>
+
+
+
+</body>
+
+	
+	
+
+
+</html>

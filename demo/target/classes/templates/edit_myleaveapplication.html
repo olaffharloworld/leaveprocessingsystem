@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+<div th:replace="fragments/layout.html :: menu"/>
+		<!--navigation bar-->
+	<div align="center">
+		<h1>Edit leave form</h1>
+		<br/>
+		<form action="#" th:action="@{/editmyleave/}+${leaveapplication.id}" th:object="${leaveapplication}" method="POST">
+			<table>
+				<tr>
+					<td>From Date: </td>
+					<td>
+						<fieldset>
+							<input type="text" th:field="*{fromDate}" placeholder="dd-MM-yyyy"/>
+						</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('fromDate')}" th:errors="*{fromDate}"></td>
+				</tr>
+				<tr>
+					<td>To Date: </td>
+					<td>
+						<fieldset>
+							<input type="text" th:field="*{toDate}" placeholder="dd-MM-yyyy"/>
+						</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('toDate')}" th:errors="*{toDate}"></td>
+				</tr>
+				<tr>
+					<td>
+						<label for="leaveType">Leave Type:</label></td>
+					</td>
+					<td>
+					<fieldset>
+						<select size="03"
+						name="leaveType" id="leaveType">
+						<option value="ANNUAL LEAVE">ANNUAL LEAVE</option>
+						<option value="MEDICAL LEAVE">MEDICAL LEAVE</option>
+						<option value="COMPENSATION LEAVE">COMPENSATION LEAVE</option>>
+						</select>
+					</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('leaveType')}" th:errors="*{leaveType}"></td>
+				</tr>
+			<!--	<tr>
+					<td>Leave Type: </td>
+					<selce th:field="*{leaveType}">
+						<option value="">Slect</option>
+						<option value="ANNUAL LEAVE">ANNUAL LEAVE</option>
+						<option value="MEDICAL LEAVE">MEDICAL LEAVE</option>
+						<option value="COMPENSATION LEAVE">COMPENSATION LEAVE</option>
+					</selce>
+				</tr>-->
+				<tr>
+					<td>Leave Reason: </td>
+					<td><input type="text" th:field="*{reason}"/></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="apply"/></td>
+				</tr>
+				
+			</table>
+		</form>
+	</div>
+</body></html>
+
+

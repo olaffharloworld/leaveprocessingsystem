@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+<div th:replace="fragments/layout.html :: menu"/>
+		<!--navigation bar-->
+	<div align="center">
+		<h1>Add New Leave Entitlement</h1>
+		<br/>
+		<form action="#" th:action="@{/saveleavebalance}" th:object="${leavebalance}" method="POST">
+			<table>
+				<tr>
+					<td>Name:</td>
+					<td>
+						<fieldset>
+							<select th:field="*{name}">
+								<option th:each="user:${listUsers}" th:value="${user.name}"
+									th:text="${user.name}">List</option>
+							</select>
+						</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+				</tr>
+<!-- 				<tr>
+					<td>user name: </td>
+					<td><input type="text" th:field="*{name}"></td>
+				</tr> -->
+<!-- 				<tr>
+					<td>leave type: </td>
+					<td><input type="text" th:field="*{type}"></td>
+				</tr> -->
+				<tr>
+					<td>Leave Type:</td>
+					<td>
+						<fieldset>
+							<select th:field="*{type}">
+								<option th:each="user:${listleaveTypes}" th:value="${user.type}"
+									th:text="${user.type}">List</option>
+							</select>
+						</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></td>
+				</tr>
+				<tr>
+					<td>balance: </td>
+					<td>
+						<fieldset>
+							<input type="text" th:field="*{balance}" />
+						</fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('balance')}" th:errors="*{balance}"></td>
+				</tr>
+				<tr>
+
+				<tr>
+					<td colspan="2"><button type="submit">Save</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body></html>
+

@@ -1,0 +1,61 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head th:fragment="html_head" id="html_head">
+	<meta charset="ISO-8859-1">
+	<title>Leave Application Processing System - NUS</title>
+	<link rel="stylesheet" type="text/css" media="all" href="../../css/simple.css" th:href="@{/css/simple.css}" />
+</head>
+
+<body>
+	<div th:fragment="menu" id="menu">
+	<!--Navigation bar-->
+	<nav class="navbar">
+		<a th:href="@{/about}">Leave Application Processing 
+		System - NUS</a>
+
+		
+		<!--admin-->
+		<a sec:authorize="hasAuthority('Admin')" th:href="@{/leavetype}"> Manage Leave Types</a> 
+		<a sec:authorize="hasAuthority('Admin')" th:href="@{/list}"> Manage Staff</a >
+		<a sec:authorize="hasAuthority('Admin')" th:href="@{/leavebalance}"> Manage Leave Entitlement</a >
+		<a sec:authorize="hasAuthority('Admin')" th:href="@{/hieracy}"> Manage Hierarchy</a >
+		<a sec:authorize="hasAuthority('Admin')" th:href="@{/publicholiday}"> Manage Public Holiday</a >
+		
+		<!-- staff -->
+		<a sec:authorize="hasAnyAuthority('Manager','Staff')" th:href="@{/applyleave}">Apply Leave</a>
+		
+		<a sec:authorize="hasAnyAuthority('Manager','Staff')" th:href="@{/viewmyhistory}">View My History</a>
+		<a sec:authorize="hasAuthority('Manager')" th:href="@{/manageleaves}">Manage Staff's Leaves</a>
+		<a sec:authorize="hasAuthority('Manager')" th:href="@{/viewsubordinate}">View Subordinate Leave History</a>
+			
+		<div sec:authorize="isAuthenticated()">
+		<a>
+		Welcome&nbsp;<span sec:authentication="name">Username</span></a>
+		<a><i><span sec:authentication="principal.authorities">Roles</span></i></a>
+		
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout" />
+		</form>
+		</div>
+		
+		<div class="subnav">
+		
+		</div >
+	
+	</nav>
+	</div>
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+</html>
